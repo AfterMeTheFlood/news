@@ -1,1 +1,1 @@
-# news
+# News list: cnBeta, ithome
