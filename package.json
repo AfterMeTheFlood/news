@@ -12,6 +12,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
+    "primeflex": "^2.0.0",
     "primereact": "^5.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
