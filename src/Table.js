@@ -20,22 +20,22 @@ const TableHeader = () => {
   return (
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Job</th>
+        <th>title</th>
+        <th>date</th>
       </tr>
     </thead>
   );
 };
 
 const TableBody = (props) => {
-  const rows = props.characterData.map((row, index) => {
+  const itemList = props.characterData.itemList
+    ? props.characterData.itemList
+    : [];
+  const rows = itemList.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.name}</td>
-        <td>{row.job}</td>
-        <td>
-          <button onClick={() => props.removeCharacter(index)}>Delete</button>
-        </td>
+        <td>{row.title}</td>
+        <td>{row.pubDate}</td>
       </tr>
     );
   });
@@ -43,12 +43,12 @@ const TableBody = (props) => {
 };
 
 TableBody.propTypes = {
-  characterData: PropTypes.array.isRequired,
+  characterData: PropTypes.object.isRequired,
   removeCharacter: PropTypes.func.isRequired,
 };
 
 Table.propTypes = {
-  characterData: PropTypes.array.isRequired,
+  characterData: PropTypes.object.isRequired,
   removeCharacter: PropTypes.func.isRequired,
 };
 

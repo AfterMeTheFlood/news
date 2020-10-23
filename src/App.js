@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import Table from "./Table";
 import Form from "./Form";
+import getCnBeta from "./cnbeta";
 
 class App extends Component {
   state = {
@@ -26,15 +27,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const url =
-      "https://en.wikipedia.org/w/api.php?action=opensearch&search=Seona+Dancing&format=json&origin=*";
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          data,
-        });
+    getCnBeta().then((data) => {
+      this.setState({
+        cnBeta: data,
       });
+      console.log(data);
+    });
   }
 
   removeCharacter = (index) => {
@@ -53,15 +51,13 @@ class App extends Component {
   };
 
   render() {
-    const { characters } = this.state;
-    const { data } = this.state;
+    const cnBeta = this.state && this.state.cnBeta ? this.state.cnBeta : {};
     return (
       <div className="App">
-        <ul>{data}</ul>
         <h1>{_.join(["Hello", "Web"], " ")}</h1>
         <div className="container">
           <Table
-            characterData={characters}
+            characterData={cnBeta}
             removeCharacter={this.removeCharacter}
           />
           <Form handleSubmit={this.handleSubmit} />
