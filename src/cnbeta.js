@@ -14,12 +14,13 @@ async function getData() {
 
 async function getCnBeta() {
   const jsonData = await getData();
+  console.log(jsonData);
   const main = jsonData.rss.channel;
-  const logo = main.image.url;
-  const itemList = main.item;
   return {
-    logo,
-    itemList,
+    name: main.title,
+    description: main.description,
+    logo: main.image.url,
+    itemList: main.item,
   };
 }
 

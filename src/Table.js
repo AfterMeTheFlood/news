@@ -3,34 +3,29 @@ import PropTypes from "prop-types";
 
 class Table extends Component {
   render() {
-    const { characterData, removeCharacter } = this.props;
+    const { data } = this.props;
     return (
       <table>
-        <TableHeader />
-        <TableBody
-          characterData={characterData}
-          removeCharacter={removeCharacter}
-        />
+        <TableHeader data={data} />
+        <TableBody data={data} />
       </table>
     );
   }
 }
 
-const TableHeader = () => {
+const TableHeader = (props) => {
+  const description = props.data.description;
   return (
     <thead>
       <tr>
-        <th>title</th>
-        <th>date</th>
+        <th>{description}</th>
       </tr>
     </thead>
   );
 };
 
 const TableBody = (props) => {
-  const itemList = props.characterData.itemList
-    ? props.characterData.itemList
-    : [];
+  const itemList = props.data.itemList ? props.data.itemList : [];
   const rows = itemList.map((row, index) => {
     return (
       <tr key={index}>
@@ -42,14 +37,16 @@ const TableBody = (props) => {
   return <tbody>{rows}</tbody>;
 };
 
+TableHeader.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
 TableBody.propTypes = {
-  characterData: PropTypes.object.isRequired,
-  removeCharacter: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 Table.propTypes = {
-  characterData: PropTypes.object.isRequired,
-  removeCharacter: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default Table;
