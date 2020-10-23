@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const commonConfig = {
   entry: "./src/index.js",
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
   },
@@ -22,18 +22,6 @@ const commonConfig = {
       chunkFilename: "[id].css",
     }),
   ],
-  optimization: {
-    runtimeChunk: "single",
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
-  },
   stats: {
     colors: true,
   },
