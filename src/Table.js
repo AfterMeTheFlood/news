@@ -6,18 +6,17 @@ import { Column } from "primereact/column";
 class Table extends Component {
   render() {
     const { data } = this.props;
-    const itemList = data.itemList ? data.itemList : [];
+    const items = data.items ? data.items : [];
 
     return (
       <div className="card">
         <DataTable
-          value={itemList}
-          // selection={itemList[0]}
+          value={items}
           onSelectionChange={(e) => this.setState({ selectedItem: e.value })}
           selectionMode="single"
           dataKey="id"
         >
-          <Column field="title" header={data.name}></Column>
+          <Column field="title"></Column>
         </DataTable>
       </div>
     );

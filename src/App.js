@@ -1,25 +1,42 @@
 import React, { Component } from "react";
+import { TabView, TabPanel } from "primereact/tabview";
 import Table from "./Table";
-import getCnBeta from "./cnbeta";
+import { get9to5mac, getCnBeta } from "./feed";
 
 class App extends Component {
+  state = {
+    activeIndex: 0,
+  };
+
   componentDidMount() {
+    get9to5mac().then((data) => {
+      this.setState({
+        _9to5mac: data,
+      });
+    });
     getCnBeta().then((data) => {
       this.setState({
         cnBeta: data,
       });
-      console.log(data);
     });
   }
 
   render() {
-    const cnBeta = this.state && this.state.cnBeta ? this.state.cnBeta : {};
+    const cnBeta = this.state.cnBeta ? this.state.cnBeta : {};
+    const _9to5mac = this.state._9to5mac ? this.state._9to5mac : {};
     return (
-      <div className="App">
-        <div className="container">
+      <TabView
+        activeIndex={this.state.activeIndex}
+        onTabChange={(e) => this.setState({ activeIndex: e.index })}
+      >
+        <TabPanel header="9to5mac">
+          <Table data={_9to5mac} />
+        </TabPanel>
+        <TabPanel header="cnBeta">
           <Table data={cnBeta} />
-        </div>
-      </div>
+        </TabPanel>
+        <TabPanel header="Header III">Content III</TabPanel>
+      </TabView>
     );
   }
 }
