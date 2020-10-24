@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import Table from "./Table";
 import Page from "./Page";
+import PageITHome from "./PageITHome";
 import { getITHome, get9to5mac, getCnBeta } from "./feed";
 
 class App extends Component {
@@ -49,8 +50,8 @@ class App extends Component {
             <div className="p-col-4">
               <Table data={ithome} selectArticle={this.selectArticle} />
             </div>
-            <div className="p-col-fixed">
-              <Page article={article} />
+            <div className="p-col">
+              <PageITHome article={article} />
             </div>
           </div>
         </TabPanel>
