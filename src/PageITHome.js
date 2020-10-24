@@ -43,7 +43,16 @@ class PageITHome extends Component {
       }
     });
 
-    return <Panel header={article.title}>{paragraphs}</Panel>;
+    const divStyle = {
+      overflowY: "scroll",
+      height: "1100px",
+    };
+
+    return (
+      <Panel header={article.title} style={divStyle}>
+        {paragraphs}
+      </Panel>
+    );
   }
 }
 
