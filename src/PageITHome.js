@@ -39,7 +39,7 @@ class PageITHome extends Component {
       if ("text" === snippet.type) {
         return <p key={index}>{snippet.value}</p>;
       } else if ("img" === snippet.type) {
-        return <img src={snippet.value} />;
+        return <img src={snippet.value} width="100%" height="auto" />;
       }
     });
 
