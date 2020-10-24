@@ -7,10 +7,20 @@ class Page extends Component {
 
   render() {
     const { article } = this.props;
+    if (Object.keys(article).length === 0) {
+      return null;
+    }
+
     console.log(article);
     const content = article.content;
+    const styleContent = {
+      width: "1000px",
+    };
     const htmlContent = (
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+      <div
+        dangerouslySetInnerHTML={{ __html: content }}
+        style={styleContent}
+      ></div>
     );
 
     return <Panel header={article.title}>{htmlContent}</Panel>;
