@@ -7,6 +7,7 @@ import { get9to5mac, getCnBeta } from "./feed";
 class App extends Component {
   state = {
     activeIndex: 0,
+    selectedArticle: {},
   };
 
   componentDidMount() {
@@ -22,9 +23,16 @@ class App extends Component {
     });
   }
 
+  selectArticle = (item) => {
+    this.setState({
+      selectedArticle: item,
+    });
+  };
+
   render() {
     const cnBeta = this.state.cnBeta ? this.state.cnBeta : {};
     const _9to5mac = this.state._9to5mac ? this.state._9to5mac : {};
+    const article = this.state.selectedArticle;
     return (
       <TabView
         activeIndex={this.state.activeIndex}
@@ -33,15 +41,15 @@ class App extends Component {
         <TabPanel header="9to5mac">
           <div className="p-grid">
             <div className="p-col-4">
-              <Table data={_9to5mac} />
+              <Table data={_9to5mac} selectArticle={this.selectArticle} />
             </div>
-            <div className="p-col">
-              <Page />
+            <div className="p-col-fixed">
+              <Page article={article} />
             </div>
           </div>
         </TabPanel>
         <TabPanel header="cnBeta">
-          <Table data={cnBeta} />
+          <Table data={cnBeta} selectArticle={this.selectArticle} />
         </TabPanel>
         <TabPanel header="Header III">Content III</TabPanel>
       </TabView>

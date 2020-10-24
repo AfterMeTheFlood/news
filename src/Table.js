@@ -5,14 +5,14 @@ import { Column } from "primereact/column";
 
 class Table extends Component {
   render() {
-    const { data } = this.props;
+    const { data, selectArticle } = this.props;
     const items = data.items ? data.items : [];
 
     return (
       <div className="card">
         <DataTable
           value={items}
-          onSelectionChange={(e) => this.setState({ selectedItem: e.value })}
+          onSelectionChange={(e) => selectArticle(e.value)}
           selectionMode="single"
           dataKey="id"
         >
@@ -25,6 +25,7 @@ class Table extends Component {
 
 Table.propTypes = {
   data: PropTypes.object.isRequired,
+  selectArticle: PropTypes.func.isRequired,
 };
 
 export default Table;
