@@ -13,6 +13,8 @@ class Table extends Component {
         <DataTable
           value={items}
           onSelectionChange={(e) => selectArticle(e.value)}
+          scrollable
+          scrollHeight="1050px"
           selectionMode="single"
           dataKey="id"
         >
