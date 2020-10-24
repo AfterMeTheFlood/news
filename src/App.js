@@ -49,7 +49,14 @@ class App extends Component {
           </div>
         </TabPanel>
         <TabPanel header="cnBeta">
-          <Table data={cnBeta} selectArticle={this.selectArticle} />
+          <div className="p-grid">
+            <div className="p-col-4">
+              <Table data={cnBeta} selectArticle={this.selectArticle} />
+            </div>
+            <div className="p-col-fixed">
+              <Page article={article} />
+            </div>
+          </div>
         </TabPanel>
         <TabPanel header="Header III">Content III</TabPanel>
       </TabView>
